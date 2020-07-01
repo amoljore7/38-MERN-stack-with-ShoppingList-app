@@ -20,7 +20,7 @@ const db = require('./config/keys').mongoURI;
 // Connect to MongoDB
 mongoose.connect(db, {useNewUrlParser:true, useUnifiedTopology: true,})
 .then(() => console.log('Mongo DB Connected...'))
-.catch(err => console.log(">>>>>>>>>>>>",+err));
+.catch(err => console.log(">>>>> Mongo DB Not-Connected >>>>>>>",+err));
 
 // Use routes
 app.use('/api/items', items);
