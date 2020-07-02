@@ -10,7 +10,7 @@ import {
   Input,
   Container
 } from "reactstrap";
-import { v4 as uuid } from "uuid";
+
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemAction";
 
