@@ -1,33 +1,32 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const port = process.env.PORT || 5000;
 const path = require('path');
+const config = require('config');
 
-const items = require("./routes/api/items");
 
 const app = express();
 
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
-
 // Bodyparser Middleware / parse application/json
-app.use(bodyParser.json());
+app.use(express.json());
 
-// DB Config
-const DB = require("./config/keys").MONGO_URI;
+// DB Config - we nee to npm i config
+const DB = config.get('mongoURI');
 
 // Connect to MongoDB
 mongoose
   .connect(DB, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true
   })
   .then(() => console.log("Mongo DB Connected..."))
   .catch((err) => console.log(">>>>> Mongo DB Not-Connected >>>>>>>", +err));
 
-// Use routes
-app.use("/api/items", items);
+// Use routes - All API From Route Folder
+app.use("/api/items", require("./routes/api/items"));
+app.use('/api/user', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 // Serve static assests if in production - for deploye purpose
 if(process.env.NODE_ENV === 'production') {

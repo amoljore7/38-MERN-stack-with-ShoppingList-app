@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Item Model
+// Item Moduls - Schema
 const Item = require('../../moduls/Item');
 
 // @route GET api/items
