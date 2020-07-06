@@ -25,7 +25,7 @@ mongoose
 
 // Use routes - All API From Route Folder
 app.use("/api/items", require("./routes/api/items"));
-app.use('/api/user', require('./routes/api/users'));
+app.use('/api/users', require('./routes/api/users'));
 app.use('/api/auth', require('./routes/api/auth'));
 
 // Serve static assests if in production - for deploye purpose
