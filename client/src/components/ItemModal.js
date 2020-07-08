@@ -8,11 +8,12 @@ import {
   FormGroup,
   Label,
   Input,
-  Container
+  Container,
 } from "reactstrap";
 
 import { connect } from "react-redux";
 import { addItem } from "../actions/itemAction";
+import PropTypes from "prop-types";
 
 class ItemModal extends Component {
   constructor(props) {
@@ -22,6 +23,10 @@ class ItemModal extends Component {
       name: "",
     };
   }
+
+  static propTypes = {
+    isAuthenticated: PropTypes.bool,
+  };
 
   toggle = () => {
     this.setState({
@@ -33,11 +38,11 @@ class ItemModal extends Component {
       [e.target.name]: e.target.value,
     });
   };
-  onSubmit =(e)=>{
+  onSubmit = (e) => {
     e.preventDefault();
 
     const newItem = {
-      name: this.state.name
+      name: this.state.name,
     };
 
     // Add Item via addItem action
@@ -50,13 +55,17 @@ class ItemModal extends Component {
   render() {
     return (
       <Container>
-        <Button
-          color="dark"
-          style={{ marginBottom: "2rem" }}
-          onClick={this.toggle}
-        >
-          Add Item
-        </Button>
+        {this.props.isAuthenticated ? (
+          <Button
+            color="dark"
+            style={{ marginBottom: "2rem" }}
+            onClick={this.toggle}
+          >
+            Add Item
+          </Button>
+        ) : (
+          <h4 className="mb-3 ml-4">Please log in to manage items</h4>
+        )}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
           <ModalHeader toggle={this.toggle}>Add To Shopping List</ModalHeader>
@@ -71,11 +80,7 @@ class ItemModal extends Component {
                   placeholder="Add Shopping item"
                   onChange={this.onChange}
                 />
-                <Button
-                  color="dark"
-                  style={{marginTop: '2rem'}}
-                  block
-                >
+                <Button color="dark" style={{ marginTop: "2rem" }} block>
                   Add Item
                 </Button>
               </FormGroup>
@@ -87,9 +92,9 @@ class ItemModal extends Component {
   }
 }
 
-
-const mapStateToProps =(state)=>({
-  item: state.item
-})
+const mapStateToProps = (state) => ({
+  item: state.item,
+  isAuthenticated: state.auth.isAuthenticated,
+});
 
 export default connect(mapStateToProps, { addItem })(ItemModal);
