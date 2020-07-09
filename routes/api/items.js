@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
 });
 
 // @route POST api/items
-// @desc Greate an items
+// @desc Create an items
 // @access Private
 
 router.post('/', auth, (req, res) => {
