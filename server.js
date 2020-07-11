@@ -30,6 +30,7 @@ app.use("/api/auth", require("./routes/api/auth"));
 // Serve static assests if in production - for deploye purpose
 
 if (process.env.NODE_ENV === "production") {
+  
   // Set static folder
   app.use(express.static("client/build"));
 
