@@ -20,7 +20,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Mongo DB Connected..."))
-  .catch((err) => console.log(">>>>> Mongo DB Not-Connected >>>>>>>", +err));
+  .catch((err) => console.log(">>>>> Mongo DB Not-Connected >>>>>", +err));
 
 // Use routes - All API From Route Folder
 app.use("/api/items", require("./routes/api/items"));
@@ -30,7 +30,6 @@ app.use("/api/auth", require("./routes/api/auth"));
 // Serve static assests if in production - for deploye purpose
 
 if (process.env.NODE_ENV === "production") {
-  
   // Set static folder
   app.use(express.static("client/build"));
 
