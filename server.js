@@ -20,7 +20,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => console.log("Mongo DB Connected..."))
-  .catch((err) => console.log(">>>>> Mongo DB Not-Connected >>>>>", +err));
+  .catch((err) => console.log(">>>> Mongo DB Not-Connected >>>", +err));
 
 // Use routes - All API From Route Folder
 app.use("/api/items", require("./routes/api/items"));
