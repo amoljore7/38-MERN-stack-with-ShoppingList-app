@@ -9,7 +9,7 @@ const app = express();
 // Bodyparser Middleware / parse application/json
 app.use(express.json());
 
-// DB Config - we nee to npm i config
+// DB Config - we nee to npm install config cammand
 const DB = config.get("mongoURI");
 
 // Connect to MongoDB
