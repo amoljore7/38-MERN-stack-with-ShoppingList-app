@@ -6,7 +6,7 @@ const config = require("config");
 
 const app = express();
 
-// Bodyparser Middleware / parse application/json
+// Bodyparser Middleware -parse application/json
 app.use(express.json());
 
 // DB Config - we nee to npm install config cammand
